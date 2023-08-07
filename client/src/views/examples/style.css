@@ -1,0 +1,22 @@
+.loginalign{
+display: flex;
+justify-content: space-around;
+}
+.title {
+    font-size: 64px !important;
+}
+.titlelogin {
+    font-size: 64px !important;
+}
+.alignment{
+
+    margin-top: -35px !important;
+    padding-left: 15px !important;
+}
+.alignmentlogin{
+    margin-top: -5px !important;
+    padding-left: 10px !important;
+}
+.loginbg {
+    margin-top: -200px !important;
+}

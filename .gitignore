@@ -2,6 +2,8 @@
 
 # dependencies
 client/node_modules
+client/package-lock.json
+clent/build
 
 # production
 client/build
@@ -10,3 +12,6 @@ client/build
 **/.DS_Store
 
 client/npm-debug.log*
+
+**/__MACOSX/
+client/Documentation/
