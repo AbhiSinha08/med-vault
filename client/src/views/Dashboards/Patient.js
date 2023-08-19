@@ -1,50 +1,16 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
 import {
     Button,
-    Card,
-    CardHeader,
-    CardBody,
-    Label,
-    FormGroup,
-    Form,
-    Input,
-    FormText,
-    NavItem,
-    NavLink,
-    Nav,
-    Table,
-    TabContent,
-    TabPane,
     Container,
     Row,
     Col,
-    UncontrolledTooltip,
     UncontrolledCarousel,
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
 
 const carouselItems = [
@@ -67,8 +33,32 @@ const carouselItems = [
 
 let ps = null;
 
+const reportsData = [
+    {
+        id: 1,
+        name: "Dr. Abhinav Kumar",
+        spec: "General Medicine",
+        date: "12-08-2023",
+        photos: [
+            "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+            "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+        ],
+        notes: "Ipsum adipisicing aliqua officia velit sunt dolor qui Lorem reprehenderit deserunt anim duis. Commodo exercitation voluptate tempor laboris ad aute dolore. Ullamco duis sint incididunt sunt laborum quis in officia culpa esse qui pariatur deserunt. Sint sunt pariatur incididunt proident sunt."
+    },
+    {
+        id: 2,
+        name: "Dr. Abhinav Kumar",
+        spec: "General Medicine",
+        date: "14-08-2023",
+        photos: [
+            "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+            "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+        ],
+        notes: "Ipsum adipisicing aliqua officia velit sunt dolor qui Lorem reprehenderit deserunt anim duis. Commodo exercitation voluptate tempor laboris ad aute dolore. Ullamco duis sint incididunt sunt laborum quis in officia culpa esse qui pariatur deserunt. Sint sunt pariatur incididunt proident sunt."
+    }
+]
+
 export default function ProfilePage() {
-    const [tabs, setTabs] = React.useState(1);
     React.useEffect(() => {
         if (navigator.platform.indexOf("Win") > -1) {
             document.documentElement.className += " perfect-scrollbar-on";
@@ -89,313 +79,120 @@ export default function ProfilePage() {
             document.body.classList.toggle("profile-page");
         };
     }, []);
+
+
+
+    const [patientName, setPatientName] = React.useState("Patient Name");
+    const [patientAge, setPatientAge] = React.useState(21);
+    const [patientGender, setPatientGender] = React.useState("Male");
+    const [patientAbhaID, setPatientAbhaID] = React.useState("123456789000");
+    const [reports, setReports] = React.useState([]);
+
+    const [doctors, setDoctors] = React.useState([
+        {
+            id: "id",
+            name: "Dr. name 1"
+        },
+        {
+            id: "id2",
+            name: "Dr. name 2"
+        }
+    ])
+
+    const [search, setSearch] = React.useState("");
+
+    React.useEffect(() => {
+        if (search) {
+            setReports((prev) => {
+                return prev.filter((report) => {
+                    if (report.name.toLowerCase().includes(search.toLowerCase()) ||
+                        report.spec.toLowerCase().includes(search.toLowerCase()))
+                        return true
+                    return false
+                })
+            })
+        }
+        else setReports(reportsData) // To Fetch
+    }, [search])
+
+
+
+
     return (
         <>
-            <div className="wrapper">
-                <div className="page-header">
-                    <img
-                        alt="..."
-                        className="dots"
-                        src={require("assets/img/dots.png")}
-                    />
-                    <img
-                        alt="..."
-                        className="path"
-                        src={require("assets/img/path4.png")}
-                    />
-                    <Container className="">
-                        <Row>
-                            <Col lg="4" md="6">
-                            <Card className="card-coin card-plain">
-                                    <CardHeader>
-                                        <img
-                                            alt="..."
-                                            className="img-center img-fluid rounded-circle"
-                                            src={require("assets/img/mike.jpg")}
-                                        />
-                                        <h4 className="title">Transactions</h4>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <Nav
-                                            className="nav-tabs-primary justify-content-center"
-                                            tabs
-                                        >
-                                            <NavItem>
-                                                <NavLink
-                                                    className={classnames({
-                                                        active: tabs === 1,
-                                                    })}
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        setTabs(1);
-                                                    }}
-                                                    href="#pablo"
-                                                >
-                                                    Wallet
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={classnames({
-                                                        active: tabs === 2,
-                                                    })}
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        setTabs(2);
-                                                    }}
-                                                    href="#pablo"
-                                                >
-                                                    Send
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={classnames({
-                                                        active: tabs === 3,
-                                                    })}
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        setTabs(3);
-                                                    }}
-                                                    href="#pablo"
-                                                >
-                                                    News
-                                                </NavLink>
-                                            </NavItem>
-                                        </Nav>
-                                        <TabContent
-                                            className="tab-subcategories"
-                                            activeTab={"tab" + tabs}
-                                        >
-                                            <TabPane tabId="tab1">
-                                                <Table className="tablesorter" responsive>
-                                                    <thead className="text-primary">
-                                                        <tr>
-                                                            <th className="header">COIN</th>
-                                                            <th className="header">AMOUNT</th>
-                                                            <th className="header">VALUE</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>BTC</td>
-                                                            <td>7.342</td>
-                                                            <td>48,870.75 USD</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>ETH</td>
-                                                            <td>30.737</td>
-                                                            <td>64,53.30 USD</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>XRP</td>
-                                                            <td>19.242</td>
-                                                            <td>18,354.96 USD</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </Table>
-                                            </TabPane>
-                                            <TabPane tabId="tab2">
-                                                <Row>
-                                                    <Label sm="3">Pay to</Label>
-                                                    <Col sm="9">
-                                                        <FormGroup>
-                                                            <Input
-                                                                placeholder="e.g. 1Nasd92348hU984353hfid"
-                                                                type="text"
-                                                            />
-                                                            <FormText color="default" tag="span">
-                                                                Please enter a valid address.
-                                                            </FormText>
-                                                        </FormGroup>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Label sm="3">Amount</Label>
-                                                    <Col sm="9">
-                                                        <FormGroup>
-                                                            <Input placeholder="1.587" type="text" />
-                                                        </FormGroup>
-                                                    </Col>
-                                                </Row>
-                                                <Button
-                                                    className="btn-simple btn-icon btn-round float-right"
-                                                    color="primary"
-                                                    type="submit"
-                                                >
-                                                    <i className="tim-icons icon-send" />
-                                                </Button>
-                                            </TabPane>
-                                            <TabPane tabId="tab3">
-                                                <Table className="tablesorter" responsive>
-                                                    <thead className="text-primary">
-                                                        <tr>
-                                                            <th className="header">Latest Crypto News</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>The Daily: Nexo to Pay on Stable...</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Venezuela Begins Public of Nation...</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>PR: BitCanna – Dutch Blockchain...</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </Table>
-                                            </TabPane>
-                                        </TabContent>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col className="ml-auto mr-auto" lg="4" md="6">
-                                Search Medical Records
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-                <div className="section">
-                    <Container>
-                        <Row className="justify-content-between">
-                            <Col md="6">
-                                <Row className="justify-content-between align-items-center">
-                                    <UncontrolledCarousel items={carouselItems} />
-                                </Row>
-                            </Col>
-                            <Col md="5">
-                                <h1 className="profile-title text-left">Projects</h1>
-                                <h5 className="text-on-back">02</h5>
-                                <p className="profile-description text-left">
-                                    An artist of considerable range, Ryan — the name taken by
-                                    Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                                    performs and records all of his own music, giving it a warm,
-                                    intimate feel with a solid groove structure. An artist of
-                                    considerable range.
-                                </p>
-                                <div className="btn-wrapper pt-3">
-                                    <Button
-                                        className="btn-simple"
-                                        color="primary"
-                                        href="#pablo"
-                                        onClick={(e) => e.preventDefault()}
-                                    >
-                                        <i className="tim-icons icon-book-bookmark" /> Bookmark
-                                    </Button>
-                                    <Button
-                                        className="btn-simple"
-                                        color="info"
-                                        href="#pablo"
-                                        onClick={(e) => e.preventDefault()}
-                                    >
-                                        <i className="tim-icons icon-bulb-63" /> Check it!
-                                    </Button>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-                <section className="section">
-                    <Container>
-                        <Row>
-                            <Col md="6">
-                                <Card className="card-plain">
-                                    <CardHeader>
-                                        <h1 className="profile-title text-left">Contact</h1>
-                                        <h5 className="text-on-back">03</h5>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <Form>
-                                            <Row>
-                                                <Col md="6">
-                                                    <FormGroup>
-                                                        <label>Your Name</label>
-                                                        <Input defaultValue="Mike" type="text" />
-                                                    </FormGroup>
-                                                </Col>
-                                                <Col md="6">
-                                                    <FormGroup>
-                                                        <label>Email address</label>
-                                                        <Input placeholder="mike@email.com" type="email" />
-                                                    </FormGroup>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md="6">
-                                                    <FormGroup>
-                                                        <label>Phone</label>
-                                                        <Input defaultValue="001-12321345" type="text" />
-                                                    </FormGroup>
-                                                </Col>
-                                                <Col md="6">
-                                                    <FormGroup>
-                                                        <label>Company</label>
-                                                        <Input defaultValue="CreativeTim" type="text" />
-                                                    </FormGroup>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md="12">
-                                                    <FormGroup>
-                                                        <label>Message</label>
-                                                        <Input placeholder="Hello there!" type="text" />
-                                                    </FormGroup>
-                                                </Col>
-                                            </Row>
-                                            <Button
-                                                className="btn-round float-right"
-                                                color="primary"
-                                                data-placement="right"
-                                                id="tooltip341148792"
-                                                type="button"
-                                            >
-                                                Send text
-                                            </Button>
-                                            <UncontrolledTooltip
-                                                delay={0}
-                                                placement="right"
-                                                target="tooltip341148792"
-                                            >
-                                                Can't wait for your message
-                                            </UncontrolledTooltip>
-                                        </Form>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col className="ml-auto" md="4">
-                                <div className="info info-horizontal">
-                                    <div className="icon icon-primary">
-                                        <i className="tim-icons icon-square-pin" />
+            <div className="mt-32 text-white mx-20 rounded-lg">
+                <img
+                    alt="..."
+                    className="path -z-10"
+                    src={require("assets/img/path4.png")}
+                />
+                <Container className="flex justify-between gap-6 mb-8">
+                    <div className="flex flex-col justify-start w-[30%] gap-6 mt-[3.75rem]">
+                        {/* left column */}
+                        <div className="rounded-lg bg-purple-600/50 text-center p-4 flex flex-col gap-1 items-center">
+                            {/* Patient Details */}
+                            <img
+                                alt=""
+                                className="rounded-full h-24 w-24"
+                                src={require("../../assets/img/mike.jpg")}
+                            />
+                            <span className="font-semibold text-lg"> {patientName} </span>
+                            <span className="text-white/70"> {patientAge} yrs old &middot; {patientGender} </span>
+                            <span> Abha ID: {patientAbhaID} </span>
+                        </div>
+                        <div className="rounded-lg bg-purple-600/50 text-center p-4 flex flex-col gap-4 items-center">
+                            {/* Appointment */}
+                            <span className="font-semibold text-lg"> Book an Appointment </span>
+                            <select name="Doctors" id="Doctors">
+                                {doctors.map((e) => (
+                                    <option value={e.id} key={e.id}> {e.name} </option>
+                                ))}
+                            </select>
+                            <input type="date" />
+                            <Button color="primary" className="font-semibold px-3 py-2">
+                                Request Appointment
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-6 w-[70%]">
+                        <div className="w-full text-start"> 
+                            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+                                className="w-full bg-transparent border-none text-white/80 px-3 py-2 rounded-lg"
+                                placeholder="Search by Doctor or Specialization..." />
+                        </div>
+                        <div className="rounded-lg bg-purple-600/50 p-4 flex flex-col-reverse gap-8 items-center">
+                            {/* Reports */}
+                            {reports.map((e) => (
+                                <div key={e.id}
+                                   className="flex flex-col gap-1 rounded-lg border-[#1D8CF8] border px-3 py-2 w-full">
+                                    <div className="flex justify-between w-full items-start">
+                                        <div>
+                                            <span className="font-semibold text-lg"> {e.name} </span> <br />
+                                            {e.spec}
+                                        </div>
+                                        <span className="font-semibold"> {e.date} </span>
                                     </div>
-                                    <div className="description">
-                                        <h4 className="info-title">Find us at the office</h4>
-                                        <p>
-                                            Bld Mihail Kogalniceanu, nr. 8, <br />
-                                            7652 Bucharest, <br />
-                                            Romania
-                                        </p>
+                                    <hr className="border-white w-[80%] rounded-full" />
+                                    <p>
+                                        {e.notes}
+                                    </p>
+                                    <div className="flex gap-3">
+                                        {e.photos.map((e, i) => (
+                                            <a href={e} target="_blank">
+                                                <img
+                                            className="rounded-lg object-cover w-32 h-32"
+                                            src={e} key={i} alt="" />
+                                            </a>
+                                            
+                                        ))}
                                     </div>
                                 </div>
-                                <div className="info info-horizontal">
-                                    <div className="icon icon-primary">
-                                        <i className="tim-icons icon-mobile" />
-                                    </div>
-                                    <div className="description">
-                                        <h4 className="info-title">Give us a ring</h4>
-                                        <p>
-                                            Michael Jordan <br />
-                                            +40 762 321 762 <br />
-                                            Mon - Fri, 8:00-22:00
-                                        </p>
-                                    </div>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </section>
-                <Footer />
+                            ))}
+                        </div>
+                    </div>
+                </Container>
             </div>
+            <Footer />
         </>
     );
 }
