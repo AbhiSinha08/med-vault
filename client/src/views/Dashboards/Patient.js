@@ -183,9 +183,13 @@ export default function ProfilePage() {
                                             className="rounded-lg object-cover w-32 h-32"
                                             src={e} key={i} alt="" />
                                             </a>
-                                            
                                         ))}
                                     </div>
+                                    <a href="https://healthplus.flipkart.com/" target="_blank">
+                                        <Button className="mt-1 px-3 py-1 font-semibold" color="primary">
+                                            Order Medicines now from Flipkart Health Plus
+                                        </Button>
+                                    </a>
                                 </div>
                             ))}
                         </div>

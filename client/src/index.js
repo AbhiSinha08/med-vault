@@ -16,6 +16,7 @@ import ProfilePage from "views/examples/ProfilePage.js";
 import Lablogin from "views/examples/lablogin.js";
 
 import Patient from "views/Dashboards/Patient";
+import Hospital from "views/Dashboards/Hospital";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -30,6 +31,7 @@ root.render(
       <Route path="/profile-page" element={<ProfilePage />} />
       <Route path="/lablogin" element={<Lablogin/>} />
       <Route path="/patient" element={<Patient />} />
+      <Route path="/hospital" element={<Hospital />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>

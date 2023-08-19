@@ -132,6 +132,10 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-sound-wave" />
                   Lab Login
                 </DropdownItem>
+                <DropdownItem tag={Link} to="/hospital">
+                  <i className="tim-icons icon-sound-wave" />
+                  Hospital
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
