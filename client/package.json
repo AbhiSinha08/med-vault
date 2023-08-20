@@ -38,6 +38,8 @@
     "bootstrap": "4.6.2",
     "chart.js": "2.9.4",
     "classnames": "2.3.1",
+    "ipfs-api": "^26.1.2",
+    "ipfs-http-client": "^60.0.1",
     "moment": "2.29.4",
     "nouislider": "15.4.0",
     "perfect-scrollbar": "1.5.5",
@@ -50,7 +52,8 @@
     "reactstrap": "8.10.0",
     "sass": "1.62.1",
     "shards-react": "^1.0.3",
-    "web-vitals": "3.3.1"
+    "web-vitals": "3.3.1",
+    "web3": "^4.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
