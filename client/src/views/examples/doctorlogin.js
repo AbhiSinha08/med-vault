@@ -21,6 +21,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 // core components
 import Navbar from "components/Navbars/IndexNavbar.js";
@@ -306,9 +307,11 @@ export default function RegisterPage() {
                       </Form>
                     </CardBody>
                     <CardFooter>
+                    <Link to="/doctor">
                       <Button className="btn-round" color="primary" size="lg">
                         Login
                       </Button>
+                    </Link>
                     </CardFooter>
                   </Card>
                 </Col>
