@@ -9,6 +9,7 @@ clent/build
 client/build
 
 ML/venv
+ML/MRI_segmentation_mode.h5
 
 # misc
 **/.DS_Store

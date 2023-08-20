@@ -18,6 +18,7 @@ import Lablogin from "views/examples/lablogin.js";
 import Patient from "views/Dashboards/Patient";
 import Hospital from "views/Dashboards/Hospital";
 import Doctor from "views/Dashboards/Doctor";
+import Diagnostics from "views/Dashboards/Diagnostics";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -34,6 +35,7 @@ root.render(
       <Route path="/patient" element={<Patient />} />
       <Route path="/doctor" element={<Doctor />} />
       <Route path="/hospital" element={<Hospital />} />
+      <Route path="/lab" element={<Diagnostics />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>

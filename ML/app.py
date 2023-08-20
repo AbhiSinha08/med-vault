@@ -36,7 +36,7 @@ def jaccard_dist(y_true, y_pred):
     y_pred_flatten = K.flatten(y_pred)
     return -intersection_over_union(y_true_flatten, y_pred_flatten)
 st.title("MRI Segmentation")
-model = load_model("https://github.com/AbhiSinha08/med-vault/releases/download/v1.0/brain_MRI_seg.hdf5", custom_objects={'dice_coef_loss': dice_coeffloss, 'intersection_over_union': intersection_over_union, 'dice_coef': dice_coeffs})
+model = load_model("MRI_segmentation_mode.h5", custom_objects={'dice_coef_loss': dice_coeffloss, 'intersection_over_union': intersection_over_union, 'dice_coef': dice_coeffs})
 image_height = 256
 image_width = 256
 model_file = st.file_uploader("Upload file", type=["csv", "png", "jpg"], accept_multiple_files=True)
