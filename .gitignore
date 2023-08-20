@@ -10,6 +10,7 @@ client/build
 
 ML/venv
 ML/MRI_segmentation_mode.h5
+ML/brain_MRI_seg.hdf5
 
 # misc
 **/.DS_Store
